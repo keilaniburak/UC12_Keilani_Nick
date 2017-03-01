@@ -25,9 +25,10 @@ function between(string, start, end) {
 }
 
 /**
- * Returns an area code from a phone number
+ * Returns an area code from a phone number: (###) ###-####
  * @param   {string} phoneNum The phone number
  * @returns {string} The area code
+ * @throws {Error} If the format is incorrect
  */
 function getAreaCode(phoneNum) {
 
@@ -35,9 +36,14 @@ function getAreaCode(phoneNum) {
 
     try {
         areaCode = between(phoneNum, "(", ")");
+        areaCode = areaCode.trim();
+        if (areaCode.length == 3 && Number(areaCode)) {
+            return areaCode;
+        } else {
+            throw new Error("Invalid area code: " + areaCode);
+        }
     } catch (error) {
-        console.log(error.message);
-        return undefined;
+        throw new Error("Invalid phone number: " + error.message);
     }
 }
 
@@ -61,3 +67,48 @@ function displayAreaCode(inputId, outputId) {
 
     document.getElementById(outputId).innerHTML = outputText;
 }
+
+/**
+ * Returns a CO code from a phone number: (###) ###-####
+ * @param   {string} phoneNum The phone number
+ * @returns {string} The CO code
+ * @throws {Error} If the format is incorrect
+ */
+function getCoCode(phoneNum) {
+
+    var coCode;
+
+    try {
+        coCode = between(phoneNum, ")", "-");
+        coCode = coCode.trim();
+        if (coCode.length == 3 && Number(coCode)) {
+            return coCode;
+        } else {
+            throw new Error("Invalid CO code: " + coCode);
+        }
+    } catch (error) {
+        throw new Error("Invalid phone number: " + error.message);
+    }
+}
+
+/**
+ * Displays the area code for an inputted phone number
+ * @param {string} inputId  The element id for the text box
+ * @param {string} outputId The element id of message div
+ */
+function displayCoCode(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+
+    // Now try to get the code
+    try {
+        var coCode = getCoCode(phoneNum);
+        outputText = "Your CO code is " + coCode;
+    } catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+
+    document.getElementById(outputId).innerHTML = outputText;
+}
+
