@@ -123,6 +123,6 @@ function validPhoneNumber(phoneNum) {
     if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ") " && part1 >= 100 && part1 <= 999 && part2 >= 1000 && part2 <= 9999 && dash == "-") {
         return true;
     } else {
-        return false;
+        throw new Error("Invalid Phone Number: ", phoneNum);
     }
 }
