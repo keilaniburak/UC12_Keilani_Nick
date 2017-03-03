@@ -4,7 +4,7 @@ QUnit.test("Test the getAreaCode function.", function (assert) {
     assert.deepEqual(result, "415", "Valid area code test passed.");
 });
 
-QUnit.test( "Errors thrown for getAreaCode", function( assert ) {
+QUnit.test( "Errors thrown for getAreaCode", function(assert) {
     assert.throws( function() {
         getAreCode("415)444-5555");
     }, "Missing '('. An error should have been thrown." );
