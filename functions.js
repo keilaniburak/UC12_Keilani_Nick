@@ -80,8 +80,7 @@ function getCoCode(phoneNum) {
 
     try {
         coCode = between(phoneNum, ")", "-");
-        coCode = coCode.trim();
-        if (coCode.length == 3 && Number(coCode)) {
+        if (coCode.length == 4 && Number(coCode)) {
             return coCode;
         } else {
             throw new Error("Invalid CO code: " + coCode);
@@ -92,7 +91,7 @@ function getCoCode(phoneNum) {
 }
 
 /**
- * Displays the area code for an inputted phone number
+ * Displays the CO code for an inputted phone number
  * @param {string} inputId  The element id for the text box
  * @param {string} outputId The element id of message div
  */
@@ -104,6 +103,49 @@ function displayCoCode(inputId, outputId) {
     try {
         var coCode = getCoCode(phoneNum);
         outputText = "Your CO code is " + coCode;
+    } catch (error) {
+        console.log(error.message);
+        outputText = error.message;
+    }
+
+    document.getElementById(outputId).innerHTML = outputText;
+}
+
+/**
+ * Returns a line code from a phone number: (###) ###-####
+ * @param   {string} phoneNum The phone number
+ * @returns {string} The line code
+ * @throws {Error} If the format is incorrect
+ */
+function getLineCode(phoneNum) {
+
+    var lineCode;
+
+    try {
+        lineCode = phoneNum.slice(10, 15);
+        if (lineCode.length == 4 && Number(lineCode)) {
+            return lineCode;
+        } else {
+            throw new Error("Invalid line code: " + lineCode);
+        }
+    } catch (error) {
+        throw new Error("Invalid phone number: " + error.message);
+    }
+}
+
+/**
+ * Displays the line code for an inputted phone number
+ * @param {string} inputId  The element id for the text box
+ * @param {string} outputId The element id of message div
+ */
+function displayLineCode(inputId, outputId) {
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+
+    // Now try to get the code
+    try {
+        var lineCode = getLineCode(phoneNum);
+        outputText = "Your line code is " + lineCode;
     } catch (error) {
         console.log(error.message);
         outputText = error.message;
