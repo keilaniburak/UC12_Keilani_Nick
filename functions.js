@@ -113,16 +113,16 @@ function displayCoCode(inputId, outputId) {
 }
 
 function validPhoneNumber(phoneNum) {
-    var parenthesis1 = phoneNum.slice(0,1);
-    var areacode = phoneNum.slice(1,4);
-    var parenthesis2 = phoneNum.slice(4,6);
-    var part1 = phoneNum.slice(6,9);
-    var dash = phoneNum.slice(9,10);
-    var part2 = phoneNum.slice(10,14);
+    var parenthesis1 = phoneNum.slice(0, 1);
+    var areacode = phoneNum.slice(1, 4);
+    var parenthesis2 = phoneNum.slice(4, 6);
+    var part1 = phoneNum.slice(6, 9);
+    var dash = phoneNum.slice(9, 10);
+    var part2 = phoneNum.slice(10, 14);
 
-    if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ")" part1 >= 100 && part1 <= 999 && part2 >= 1000 && part2 <= 9999 && dash == "-") {
-      return true
+    if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ") " && part1 >= 100 && part1 <= 999 && part2 >= 1000 && part2 <= 9999 && dash == "-") {
+        return true;
     } else {
-    return false
+        return false;
     }
 }
