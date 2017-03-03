@@ -112,3 +112,6 @@ function displayCoCode(inputId, outputId) {
     document.getElementById(outputId).innerHTML = outputText;
 }
 
+function validPhoneNumber(num) {
+
+}
