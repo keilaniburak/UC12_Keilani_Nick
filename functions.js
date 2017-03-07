@@ -168,4 +168,3 @@ function validPhoneNumber(phoneNum) {
         throw new Error("Invalid Phone Number: ", phoneNum);
     }
 }
-
