@@ -22,18 +22,29 @@ QUnit.test("Test the getCoCode function.", function (assert) {
 
 QUnit.test( "Errors thrown for getCoCode", function( assert ) {
     assert.throws( function() {
-        getCoCode("415)444-5555");
-    }, "Missing ')'. An error should have been thrown." );
+        getCoCode("415)4445555");
+    }, "Missing '-'. An error should have been thrown." );
 
     assert.throws( function() {
         getAreCode("(415 444-5555");
-    }, "Missing '-'. An error should have been thrown." );
+    }, "Missing ')'. An error should have been thrown." );
 });
 
 QUnit.test("Test the getLineCode function.", function (assert) {
     var num = "(415) 555-5555";
     var result = getLineCode(num);
     assert.deepEqual(result, "5555", "Valid line code test passed.");
+
+});
+
+QUnit.test( "Errors thrown for getLineCode", function( assert ) {
+    assert.throws( function() {
+        getLineCode("415) 444-555");
+    }, "Missing 'Digit'. An error should have been thrown." );
+
+    assert.throws( function() {
+        getAreCode("(415) 444-5555");
+    }, "Missing '-'. An error should have been thrown." );
 });
 
 QUnit.test("Test the validPhoneNumber function.", function (assert) {
