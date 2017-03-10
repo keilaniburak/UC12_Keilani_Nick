@@ -61,5 +61,5 @@ QUnit.test( "Errors thrown for getLineCode", function( assert ) {
 QUnit.test("Test the validPhoneNumber function.", function (assert) {
     var num = "(415) 555-5555";
     var result = validPhoneNumber(num);
-    assert.deepEqual(result, true, "Valid Phone Number test passed.");
+    assert.deepEqual(result, "(415) 555-5555", "Valid Phone Number test passed.");
 });

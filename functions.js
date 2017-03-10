@@ -162,25 +162,24 @@ function validPhoneNumber(phoneNum) {
     var dash = phoneNum.slice(9, 10);
     var linecode = getLineCode(phoneNum);
 
-    try {
-        if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ") " && cocode >= 100 && cocode <= 999 && linecode >= 1000 && linecode <= 9999 && dash == "-") {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (error) {
-        throw new Error("Invalid phone number: ", error.message);
+    if (areacode.isNaN) {
+        return areacode;
+    } else if (cocode.isNaN) {
+        return cocode;
+    } else if (linecode.isNaN) {
+        return linecode;
+    } else if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ") " && cocode >= 100 && cocode <= 999 && linecode >= 1000 && linecode <= 9999 && dash == "-") {
+        return phoneNum;
     }
 }
 
 function displayValidPhoneNumber(inputId, outputId) {
     var outputText = "";
     var phoneNum = document.getElementById(inputId).value;
-
-    // Now try to get the code
-    if (validPhoneNumber(phoneNum) === true){
-        outputText = phoneNum + " is a valid phone number";
-    } else {
+    try {
+        var phoneNum = validPhoneNumber(phoneNum);
+        outputText = phoneNum + " is a valid phone number.";
+    } catch(error) {
         outputText = phoneNum + " is not a valid phone number";
     }
     document.getElementById(outputId).innerHTML = outputText;
