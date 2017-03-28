@@ -156,19 +156,31 @@ function displayLineCode(inputId, outputId) {
 
 function validPhoneNumber(phoneNum) {
     var parenthesis1 = phoneNum.slice(0, 1);
-    var areacode = phoneNum.slice(1, 4);
+    var areacode = getAreaCode(phoneNum);
     var parenthesis2 = phoneNum.slice(4, 6);
-    var part1 = phoneNum.slice(6, 9);
+    var cocode = getCoCode(phoneNum);
     var dash = phoneNum.slice(9, 10);
-    var part2 = phoneNum.slice(10, 14);
+    var linecode = getLineCode(phoneNum);
 
-    if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ") " && part1 >= 100 && part1 <= 999 && part2 >= 1000 && part2 <= 9999 && dash == "-") {
-        return true;
-    } else {
-        throw new Error("Invalid Phone Number: ", phoneNum);
+    if (areacode.isNaN) {
+        return areacode;
+    } else if (cocode.isNaN) {
+        return cocode;
+    } else if (linecode.isNaN) {
+        return linecode;
+    } else if (phoneNum.length == 14 && parenthesis1 == "(" && areacode >= 100 && areacode <= 999 && parenthesis2 == ") " && cocode >= 100 && cocode <= 999 && linecode >= 1000 && linecode <= 9999 && dash == "-") {
+        return phoneNum;
     }
 }
 
 function displayValidPhoneNumber(inputId, outputId) {
-
+    var outputText = "";
+    var phoneNum = document.getElementById(inputId).value;
+    try {
+        var phoneNum = validPhoneNumber(phoneNum);
+        outputText = phoneNum + " is a valid phone number.";
+    } catch(error) {
+        outputText = phoneNum + " is not a valid phone number";
+    }
+    document.getElementById(outputId).innerHTML = outputText;
 }

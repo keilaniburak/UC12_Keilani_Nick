@@ -55,11 +55,12 @@ QUnit.test( "Errors thrown for getLineCode", function( assert ) {
 
     assert.throws( function() {
         getLineCode("(415) 4445555");
+
     }, "Missing '-'. An error should have been thrown." );
 });
 
 QUnit.test("Test the validPhoneNumber function.", function (assert) {
     var num = "(415) 555-5555";
     var result = validPhoneNumber(num);
-    assert.deepEqual(result, true, "Valid Phone Number test passed.");
+    assert.deepEqual(result, "(415) 555-5555", "Valid Phone Number test passed.");
 });
