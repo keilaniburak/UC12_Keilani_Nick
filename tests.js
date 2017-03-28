@@ -6,15 +6,15 @@ QUnit.test("Test the getAreaCode function.", function (assert) {
 
 QUnit.test( "Errors thrown for getAreaCode", function(assert) {
     assert.throws( function() {
-        getAreCode("415) 444-5555");
+        getAreaCode("415) 444-5555");
     }, "Missing '('. An error should have been thrown." );
 
     assert.throws( function() {
-        getAreCode("(41) 444-5555");
+        getAreaCode("(41) 444-5555");
     }, "Missing digit. An error should have been thrown." );
 
     assert.throws( function() {
-        getAreCode("(415 444-5555");
+        getAreaCode("(415 444-5555");
     }, "Missing ')'. An error should have been thrown." );
 });
 
@@ -30,7 +30,7 @@ QUnit.test( "Errors thrown for getCoCode", function( assert ) {
     }, "Missing '-'. An error should have been thrown." );
 
     assert.throws( function() {
-        getAreCode("(415)444-5555");
+        getCoCode("(415)444-5555");
     }, "Missing 'Space'. An error should have been thrown." );
     assert.throws( function() {
         getCoCode("(415) 44-5555");
@@ -54,7 +54,7 @@ QUnit.test( "Errors thrown for getLineCode", function( assert ) {
     }, "Extra 'Digit'. An error should have been thrown." );
 
     assert.throws( function() {
-        getAreCode("(415) 444-5555");
+        getLineCode("(415) 4445555");
     }, "Missing '-'. An error should have been thrown." );
 });
 
